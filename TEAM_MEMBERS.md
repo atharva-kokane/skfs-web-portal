@@ -6,3 +6,4 @@ Add your name below to join the project:
 - Sagar Ambulge
 - Aditya Chavan
 - Vedant Kokane
+- Rushikesh Gayake
