@@ -7,3 +7,4 @@ Add your name below to join the project:
 - Aditya Chavan
 - Vedant Kokane
 - Pratik Pawar
+- Jaimil Patel
