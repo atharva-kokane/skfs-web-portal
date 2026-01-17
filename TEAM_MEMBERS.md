@@ -4,7 +4,7 @@ Add your name below to join the project:
 - Atharva Kokane
 - Tanmay Bhosale
 - Sagar Ambulge
-- Aditya Santosh Chavan
+- Aditya  Santosh  Chavan
 - Vedant Kokane
 - Pratik Pawar
 - Samruddhi Varkhade
