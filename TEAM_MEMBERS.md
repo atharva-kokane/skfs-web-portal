@@ -16,4 +16,5 @@ Add your name below to join the project:
 - Ketan Jadhav
 - Kaustubh Sarwade
 - Shambhavi Ratnaparkhi
+- Vijay More
 --end of list--
