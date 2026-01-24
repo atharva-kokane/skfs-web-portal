@@ -22,22 +22,10 @@ import { GiOfficeChair } from "react-icons/gi";
 
 /**
  * ========================================
- * CATEGORY INTERFACE
- * ========================================
- */
-interface Category {
-    id: number;
-    name: string;
-    icon: React.ComponentType<{ className?: string }>;
-    subcategories?: string[];
-}
-
-/**
- * ========================================
  * CATEGORIES DATA
  * ========================================
  */
-const categories: Category[] = [
+const categories = [
     {
         id: 1,
         name: "BED ROOM",
@@ -163,7 +151,7 @@ const categories: Category[] = [
  */
 export function CategoryNav() {
     // State to track which category is currently being hovered
-    const [activeCategory, setActiveCategory] = useState<number | null>(null);
+    const [activeCategory, setActiveCategory] = useState(null);
 
     return (
         <div className="relative">
