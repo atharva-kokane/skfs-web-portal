@@ -1,7 +1,18 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+    "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "target": "ES2017",
+        "checkJs": false,
+        "jsx": "react-jsx",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        ".next"
+    ]
 }
