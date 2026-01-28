@@ -106,7 +106,7 @@ export function Header() {
 
                     {/* 🔗 CONTACT LINK */}
                     <Link
-                        href="/contact-us"
+                        href="/contact"
                         className="text-gray-900 font-medium hover:text-orange-500 transition-colors"
                     >
                         Contact
