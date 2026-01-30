@@ -1,6 +1,5 @@
 "use client";
 
-import { supabase } from "@/lib/supabase/client";
 import React, { useState } from "react";
 import {
     ArrowLeft,
@@ -8,10 +7,11 @@ import {
     Package,
     Search,
     Filter,
-    ChevronDown,
+    ChevronDown
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase/client";
 
 export default function AdminDashboard() {
     const [quotes, setQuotes] = useState([]);
@@ -22,137 +22,150 @@ export default function AdminDashboard() {
 
     // Load quotes from localStorage
     React.useEffect(() => {
-        const fetchQuotes = async () => {
-            const { data, error } = await supabase
-                .from("quotes")
-                .select(
-                    `
-        quote_id,
-        furniture_type,
-        room_type,
-        room_size,
-        budget_range,
-        description,
-        status,
-        created_on,
-        users (
-          name,
-          contact
-        )
-      `,
-                )
-                .order("created_on", { ascending: false });
-
-            if (error) {
-                console.error("Error fetching quotes:", error);
-                return;
-            }
-
-            // reshape data to match your UI
-            const formattedQuotes = data.map((q) => ({
-                id: q.quote_id,
-                name: q.users?.name,
-                contact: q.users?.contact,
-                furnitureType: q.furniture_type,
-                roomType: q.room_type,
-                roomSize: q.room_size,
-                budget: q.budget_range,
-                requirements: q.description,
-                status: q.status,
-                date: new Date(q.created_on).toLocaleDateString(),
-            }));
-
-            console.log(formattedQuotes);
-
-            setQuotes(formattedQuotes);
-        };
-
-        fetchQuotes();
-    }, []);
+            const fetchQuotes = async () => {
+                const { data, error } = await supabase
+                    .from("quotes")
+                    .select(
+                        `
+            quote_id,
+            furniture_type,
+            room_type,
+            room_size,
+            budget_range,
+            description,
+            status,
+            created_on,
+            users (
+              name,
+              contact
+            )
+          `,
+                    )
+                    .order("created_on", { ascending: false });
+    
+                if (error) {
+                    console.error("Error fetching quotes:", error);
+                    return;
+                }
+    
+                // reshape data to match your UI
+                const formattedQuotes = data.map((q) => ({
+                    id: q.quote_id,
+                    name: q.users?.name,
+                    contact: q.users?.contact,
+                    furnitureType: q.furniture_type,
+                    roomType: q.room_type,
+                    roomSize: q.room_size,
+                    budget: q.budget_range,
+                    requirements: q.description,
+                    status: q.status,
+                    date: new Date(q.created_on).toLocaleDateString(),
+                }));
+    
+                console.log(formattedQuotes);
+    
+                setQuotes(formattedQuotes);
+            };
+    
+            fetchQuotes();
+        }, []);
 
     // Update quote status
     const updateStatus = async (id, newStatus) => {
-        const { error } = await supabase
-            .from("quotes")
-            .update({ status: newStatus })
-            .eq("quote_id", id);
-        if (error) {
-            alert("Failed to update status");
-            return;
-        }
-
-        setQuotes((prev) =>
-            prev.map((q) => (q.id === id ? { ...q, status: newStatus } : q)),
-        );
-    };
+            const { error } = await supabase
+                .from("quotes")
+                .update({ status: newStatus })
+                .eq("quote_id", id);
+            if (error) {
+                alert("Failed to update status");
+                return;
+            }
+    
+            setQuotes((prev) =>
+                prev.map((q) => (q.id === id ? { ...q, status: newStatus } : q)),
+            );
+        };
 
     // Delete quote
     const deleteQuote = async (id) => {
-        if (!confirm("Are you sure you want to delete this quote?")) return;
+            if (!confirm("Are you sure you want to delete this quote?")) return;
+    
+            const { error } = await supabase
+                .from("quotes")
+                .delete()
+                .eq("quote_id", id);
+    
+            if (error) {
+                alert("Failed deleting quote");
+                return;
+            }
+    
+            setQuotes((prev) => prev.filter((q) => q.id != id));
+        };
 
-        const { error } = await supabase
-            .from("quotes")
-            .delete()
-            .eq("quote_id", id);
+    const handleLogout = async () => {
+        try {
+            // Tell Supabase to sign out the user
+            const { error } = await supabase.auth.signOut();
+            if (error) throw error;
+            localStorage.clear();    // Removes all stored items
+            sessionStorage.clear();   // Removes all session items
 
-        if (error) {
-            alert("Failed deleting quote");
-            return;
+            // Redirect the user back to the login or landing page
+            router.push("/");
+
+        } catch (err) {
+            console.error("Error logging out:", err.message);
+            alert("Failed to log out. Please try again.");
         }
-
-        setQuotes((prev) => prev.filter((q) => q.id != id));
-    };
-
-    const handleLogout = () => {
-        router.push("/");
     };
 
     const statuses = ["All Status", "New", "Contacted", "Finalized"];
-
-    // Calculate real-time stats
-    const stats = [
-        {
-            label: "Total Quotes",
-            value: quotes.length,
-            icon: <Package className="w-10 h-10 text-gray-400" />,
-        },
-        {
-            label: "New Requests",
-            value: quotes.filter((q) => q.status === "New").length,
-            color: "text-blue-600",
-            badge: (
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                    <span className="text-blue-600 text-lg font-bold">
-                        {quotes.filter((q) => q.status === "New").length}
-                    </span>
-                </div>
-            ),
-        },
-        {
-            label: "Contacted",
-            value: quotes.filter((q) => q.status === "Contacted").length,
-            color: "text-yellow-600",
-            badge: (
-                <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <span className="text-yellow-600 text-lg font-bold">
-                        {quotes.filter((q) => q.status === "Contacted").length}
-                    </span>
-                </div>
-            ),
-        },
-        {
-            label: "Finalized",
-            value: quotes.filter((q) => q.status === "Finalized").length,
-            color: "text-green-600",
-            badge: (
-                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <span className="text-green-600 text-lg font-bold">
-                        {quotes.filter((q) => q.status === "Finalized").length}
-                    </span>
-                </div>
-            ),
-        },
-    ];
+    
+        // Calculate real-time stats
+        const stats = [
+            {
+                label: "Total Quotes",
+                value: quotes.length,
+                icon: <Package className="w-10 h-10 text-gray-400" />,
+            },
+            {
+                label: "New Requests",
+                value: quotes.filter((q) => q.status === "New").length,
+                color: "text-blue-600",
+                badge: (
+                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <span className="text-blue-600 text-lg font-bold">
+                            {quotes.filter((q) => q.status === "New").length}
+                        </span>
+                    </div>
+                ),
+            },
+            {
+                label: "Contacted",
+                value: quotes.filter((q) => q.status === "Contacted").length,
+                color: "text-yellow-600",
+                badge: (
+                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                        <span className="text-yellow-600 text-lg font-bold">
+                            {quotes.filter((q) => q.status === "Contacted").length}
+                        </span>
+                    </div>
+                ),
+            },
+            {
+                label: "Finalized",
+                value: quotes.filter((q) => q.status === "Finalized").length,
+                color: "text-green-600",
+                badge: (
+                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                        <span className="text-green-600 text-lg font-bold">
+                            {quotes.filter((q) => q.status === "Finalized").length}
+                        </span>
+                    </div>
+                ),
+            },
+        ];
 
     // Filter quotes based on search and status
     // Filter quotes based on search and status
