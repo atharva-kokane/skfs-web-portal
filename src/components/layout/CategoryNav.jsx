@@ -164,7 +164,7 @@ export function CategoryNav() {
     return (
         <div className="relative">
             {/* Category navigation bar with darker walnut background */}
-            <nav className="hidden lg:block bg-[#5A3A28] text-white">
+            <nav className="hidden lg:block bg-[#001F3F] text-white">
                 <div className="container mx-auto px-4">
                     {/* Flex container to distribute categories evenly - Scroll on Mobile, Wrap on Tablet+ */}
                     <div className="flex items-center overflow-x-auto md:overflow-visible no-scrollbar scroll-smooth gap-4 lg:gap-x-4 xl:gap-x-8 pb-2 md:pb-0 justify-between lg:flex-nowrap">
@@ -185,7 +185,7 @@ export function CategoryNav() {
                                 >
                                     <Link
                                         href={`/gallery?category=${encodeURIComponent(category.name)}`}
-                                        className="flex flex-col items-center gap-2 py-4 px-4 hover:bg-[#4A2F20] transition-colors min-w-[100px] md:min-w-0 flex-shrink-0"
+                                        className="flex flex-col items-center gap-2 py-4 px-4 hover:bg-[#003366] transition-colors min-w-[100px] md:min-w-0 flex-shrink-0"
                                     >
                                         {category.iconSrc ? (
                                             <div className="w-8 h-8 relative">
@@ -222,10 +222,10 @@ export function CategoryNav() {
                                                         <Link
                                                             key={subIndex}
                                                             href={href}
-                                                            className="flex items-center justify-between px-4 py-1 text-[#5A3A28] hover:bg-gray-50 transition-colors group"
+                                                            className="flex items-center justify-between px-4 py-1 text-[#001F3F] hover:bg-gray-50 transition-colors group"
                                                         >
                                                             <span className="font-medium">{name}</span>
-                                                            <MdChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#5A3A28]" />
+                                                            <MdChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#001F3F]" />
                                                         </Link>
                                                     );
                                                 })}

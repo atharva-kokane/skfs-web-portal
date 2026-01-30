@@ -190,7 +190,7 @@ export default function ServicesPage() {
           width: 26px;
           height: 26px;
           border-radius: 6px;
-          background: #ff4d00;
+          background: #0EA5E9;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -201,7 +201,7 @@ export default function ServicesPage() {
 
         .service-content h3 {
           margin: 0;
-          color: #ff4d00;
+          color: #0EA5E9;
           font-weight: 600;
           font-size: 1.17em;
         }
@@ -237,47 +237,57 @@ export default function ServicesPage() {
         }
 
         .service-price {
-          color: #ff4d00;
+          color: #0EA5E9;
           font-weight: 600;
           font-size: 14px;
         }
 
         .service-cta-box {
-          background-color:#ef6c00;
-          color: black;
-          padding: 20px 170px;
+          background-color: #f0f9ff;
+          color: #1f2937;
+          padding: 4rem 2rem;
           text-align: center;
-          border-radius: 12px;
-          max-width: 700px;
+          border-radius: 1.5rem;
+          max-width: 800px;
           margin: 50px auto;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         .service-cta-box h2 {
-          font-size: 32px;
-          margin-bottom: 16px;
+          font-size: 1.875rem;
+          line-height: 2.25rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #111827;
         }
 
         .service-cta-box p {
-          font-size: 18px;
-          margin-bottom: 24px;
-          line-height: 1.6;
+          font-size: 1.125rem;
+          line-height: 1.75rem;
+          color: #4b5563;
+          margin-bottom: 2rem;
+          max-width: 36rem;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .service-white-btn {
-          background-color: white;
-          color: orange;
+          background-color: #0284C7;
+          color: white;
           border: none;
-          padding: 14px 32px;
-          font-size: 16px;
-          font-weight: 600;
-          border-radius: 8px;
+          padding: 0.75rem 2rem;
+          font-size: 1rem;
+          font-weight: 500;
+          border-radius: 0.75rem;
           cursor: pointer;
-          cursor: pointer;
+          transition: all 0.2s;
+          box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2);
         }
 
         .service-white-btn:hover {
-          background-color: black;
-          color: white;
+          background-color: #0369A1;
+          transform: translateY(-1px);
+          box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
         }
 
         .service-action-btn {
@@ -292,9 +302,9 @@ export default function ServicesPage() {
         }
 
         .service-action-btn:hover {
-          background: #ff4d00;
+          background: #0EA5E9;
           color: #fff;
-          border-color: #ff4d00;
+          border-color: #0EA5E9;
         }
         
         @media (max-width: 768px) {

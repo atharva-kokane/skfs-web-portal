@@ -26,9 +26,9 @@ export default function ContactPage() {
 
             {/* Content Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-15 items-stretch">
-                
+
                 {/* ================= LEFT: INFO CARD ================= */}
-                <div className="border-4 border-orange-500 rounded-lg">
+                <div className="border-4 border-sky-500 rounded-lg">
                     <div className="bg-[#F9FAFB] shadow-lg rounded-lg p-6 flex flex-col justify-between h-full">
                         <div className="flex flex-col gap-3">
                             <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
@@ -40,7 +40,7 @@ export default function ContactPage() {
                                 Address
                             </p>
                             <div className="flex items-start gap-3">
-                                <MdLocationOn className="w-6 h-6 text-orange-500 mt-1" />
+                                <MdLocationOn className="w-6 h-6 text-sky-500 mt-1" />
                                 <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
                                     123 Furniture Street,<br />
                                     Interior Market,<br />
@@ -53,7 +53,7 @@ export default function ContactPage() {
                                 Mobile
                             </p>
                             <div className="flex items-center gap-3">
-                                <MdPhone className="w-6 h-6 text-orange-500" />
+                                <MdPhone className="w-6 h-6 text-sky-500" />
                                 <p className="text-gray-700 text-lg md:text-xl">
                                     +91 98765 43210
                                 </p>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                                 Email
                             </p>
                             <div className="flex items-center gap-3">
-                                <MdEmail className="w-6 h-6 text-orange-500" />
+                                <MdEmail className="w-6 h-6 text-sky-500" />
                                 <p className="text-gray-700 text-lg md:text-xl">
                                     info@skfurniture.com
                                 </p>
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* ================= RIGHT: FORM CARD ================= */}
-                <div className="border-4 border-orange-500 rounded-lg">
+                <div className="border-4 border-sky-500 rounded-lg">
                     <div className="bg-[#F9FAFB] shadow-lg rounded-lg p-6 flex flex-col h-full">
                         <h2 className="text-xl md:text-3xl font-semibold text-gray-900 mb-4">
                             Send Us a Message
@@ -95,7 +95,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         placeholder="Enter your name"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-sky-500 focus:outline-none"
                                     />
                                 </div>
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
                                     <input
                                         type="email"
                                         placeholder="Enter your email"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-sky-500 focus:outline-none"
                                     />
                                 </div>
 
@@ -117,14 +117,14 @@ export default function ContactPage() {
                                     <textarea
                                         rows="4"
                                         placeholder="Write your message here..."
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-sky-500 focus:outline-none"
                                     />
                                 </div>
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors mt-2"
+                                className="w-full bg-sky-500 text-white py-3 rounded-lg font-medium hover:bg-sky-600 transition-colors mt-2"
                             >
                                 Submit
                             </button>

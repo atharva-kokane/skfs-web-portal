@@ -114,7 +114,7 @@ function GalleryContent() {
                         key={filter}
                         onClick={() => setActiveFilter(filter)}
                         className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${activeFilter === filter
-                            ? "bg-orange-500 text-white shadow-md shadow-orange-200"
+                            ? "bg-sky-500 text-white shadow-md shadow-sky-200"
                             : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                             }`}
                     >
@@ -144,7 +144,7 @@ function GalleryContent() {
                             <h3 className="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                 {item.title}
                             </h3>
-                            <span className="text-orange-200 text-sm font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                            <span className="text-sky-200 text-sm font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                                 {item.category}
                             </span>
                         </div>
@@ -153,7 +153,7 @@ function GalleryContent() {
             </div>
 
             {/* CTA SECTION */}
-            <div className="mt-20 bg-orange-50 rounded-3xl p-10 md:p-16 text-center">
+            <div className="mt-20 bg-sky-50 rounded-3xl p-10 md:p-16 text-center">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     Inspired by Our Work?
                 </h2>
@@ -162,7 +162,7 @@ function GalleryContent() {
                 </p>
                 <Link
                     href="/contact-us"
-                    className="bg-orange-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-orange-700 transition-shadow shadow-lg shadow-orange-200"
+                    className="bg-sky-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-sky-700 transition-shadow shadow-lg shadow-sky-200"
                 >
                     Get Your Custom Quote
                 </Link>

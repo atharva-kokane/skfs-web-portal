@@ -45,12 +45,12 @@ const HeroSlider = () => {
 
                     <div className="absolute inset-0 bg-black/50" />
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+                    <div className="absolute inset-0 flex flex-col justify-center items-start text-left text-white px-4 md:pl-20">
                         <h1 className="text-3xl md:text-5xl font-bold mb-3">{s.title}</h1>
                         <p className="mb-6">{s.subtitle}</p>
 
                         <div className="flex gap-4">
-                            <Link href="/contact-us" className="bg-orange-500 px-6 py-2 rounded-[14px] inline-block">
+                            <Link href="/contact-us" className="bg-[#0EA5E9] px-6 py-2 rounded-[14px] inline-block">
                                 Get Free Quote
                             </Link>
                             <Link href="/services" className="border px-6 py-2 rounded-[14px] inline-block">
@@ -95,7 +95,7 @@ export default function App() {
             </section>
 
             {/* Stats */}
-            <section className="bg-[#8B6E4E] py-16 md:py-24">
+            <section className="bg-[#001F3F] py-16 md:py-24">
                 <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center text-white px-6">
                     <Stat num="500+" label="Projects Completed" />
                     <Stat num="250+" label="Happy Clients" />
@@ -249,7 +249,7 @@ const Stat = ({ num, label }) => {
             <h2 className="text-4xl font-bold mb-2">
                 {count}{suffix}
             </h2>
-            <p className="text-orange-100">{label}</p>
+            <p className="text-sky-100">{label}</p>
         </div>
     );
 };
@@ -258,14 +258,14 @@ const Stat = ({ num, label }) => {
 
 const Service = ({ icon: Icon, title }) => (
     <div className="bg-white p-8 rounded-2xl text-center transition-all duration-300 ease-out hover:-translate-y-2 shadow-[0_10px_35px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.15)] cursor-pointer">
-        <Icon className="mx-auto mb-3 text-orange-500 w-8 h-8" />
+        <Icon className="mx-auto mb-3 text-sky-500 w-8 h-8" />
         <h4 className="font-semibold">{title}</h4>
     </div>
 );
 
 const Feature = ({ icon: Icon, title, description }) => (
     <div className="bg-white p-6 rounded-2xl flex gap-3 items-start transition-all duration-300 ease-out hover:-translate-y-2 shadow-[0_10px_35px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.15)] cursor-pointer">
-        <Icon className="text-orange-500 mt-1 shrink-0" />
+        <Icon className="text-sky-500 mt-1 shrink-0" />
         <div>
             <h4 className="font-semibold mb-1">{title}</h4>
             <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
@@ -276,7 +276,7 @@ const Feature = ({ icon: Icon, title, description }) => (
 const Review = ({ name, text, rating }) => (
     <div className="bg-white p-10 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 relative group">
         {/* Decorative Quote Icon */}
-        <div className="absolute top-6 right-6 text-orange-100 group-hover:text-orange-200 transition-colors">
+        <div className="absolute top-6 right-6 text-sky-100 group-hover:text-sky-200 transition-colors">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" />
             </svg>
@@ -287,8 +287,8 @@ const Review = ({ name, text, rating }) => (
                 <Star
                     key={i}
                     size={18}
-                    fill={i < rating ? "#F59E0B" : "none"} // Yellow-500 fill
-                    className={i < rating ? "text-[#F59E0B]" : "text-gray-300"}
+                    fill={i < rating ? "#0EA5E9" : "none"} // Sky-500 fill
+                    className={i < rating ? "text-[#0EA5E9]" : "text-gray-300"}
                 />
             ))}
         </div>
@@ -298,7 +298,7 @@ const Review = ({ name, text, rating }) => (
         </p>
 
         <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm">
+            <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-bold text-sm">
                 {name.charAt(0)}
             </div>
             <div>

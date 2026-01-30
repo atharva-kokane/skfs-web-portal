@@ -7,7 +7,8 @@ import {
     Package,
     Search,
     Filter,
-    ChevronDown
+    ChevronDown,
+    Trash2
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -241,7 +242,7 @@ export default function AdminDashboard() {
                                             className="text-gray-400 hover:text-red-500 transition-colors"
                                             title="Delete Quote"
                                         >
-                                            <LogOut className="w-5 h-5" />
+                                            <Trash2 className="w-5 h-5" />
                                         </button>
                                     </div>
                                 </div>

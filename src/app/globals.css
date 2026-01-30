@@ -8,16 +8,16 @@
   --color-teal-400: #2DD4BF;
   --color-teal-500: #14B8A6;
 
-  /* Secondary Orange */
-  --color-orange-50: #FFF7ED;
-  --color-orange-100: #FFEDD5;
-  --color-orange-200: #FED7AA;
-  --color-orange-600: #EA580C;
-  --color-orange-700: #C2410C;
-  --color-orange-900: #7C2D12;
+  /* Secondary Sky (replaced Orange) */
+  --color-orange-50: #F0F9FF;
+  --color-orange-100: #E0F2FE;
+  --color-orange-200: #BAE6FD;
+  --color-orange-600: #0284C7;
+  --color-orange-700: #0369A1;
+  --color-orange-900: #0C4A6E;
 
   /* Status/Semantic Colors */
-  --color-background: #FFFFFF;
+  --color-background: #F5F5DC;
   --color-foreground: #111827;
   --color-card: #FFFFFF;
   --color-card-foreground: #111827;
@@ -56,7 +56,7 @@
 }
 
 :root {
-  --background: #FFFFFF;
+  --background: #F5F5DC;
   --foreground: #111827;
   --card: #FFFFFF;
   --card-foreground: #111827;

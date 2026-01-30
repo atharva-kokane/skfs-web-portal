@@ -168,7 +168,7 @@ export default function RequestQuotePage() {
 
             <button
               onClick={handleSubmit}
-              className="flex-1 bg-orange-600 text-white rounded-md py-2 text-xs font-medium hover:bg-orange-700"
+              className="flex-1 bg-sky-600 text-white rounded-md py-2 text-xs font-medium hover:bg-sky-700"
             >
               Submit Quote Request
             </button>
@@ -182,7 +182,7 @@ export default function RequestQuotePage() {
         </div>
 
         {/* RIGHT CARD */}
-        <div className="bg-[#FFF1DB] border border-[#F2D2A9] rounded-xl p-6 h-fit">
+        <div className="bg-sky-50 border border-sky-100 rounded-xl p-6 h-fit">
           <h3 className="font-semibold text-sm mb-2 flex items-center gap-2">
             ✨ AI Design Assistant
           </h3>

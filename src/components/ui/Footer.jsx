@@ -10,7 +10,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a111f] text-gray-300 py-8 md:py-12 px-6">
+    <footer className="bg-[#001F3F] text-gray-300 py-8 md:py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row flex-wrap justify-start gap-6 md:gap-16 mb-8 md:mb-10">

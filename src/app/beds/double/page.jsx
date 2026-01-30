@@ -9,15 +9,15 @@ export default function DoubleBedPage() {
     if (!bed) return <div className="text-center py-20">Bed not found</div>;
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-2">
             <Link
                 href="/beds"
-                className="mb-6 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition-colors inline-flex items-center gap-2 w-fit"
+                className="mb-2 px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-md transition-colors inline-flex items-center gap-2 w-fit"
             >
                 ← Back to Beds
             </Link>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+            <h1 className="text-3xl md:text-3xl font-medium text-center mb-6 text-gray-900">
                 {bed.title}
             </h1>
 
@@ -27,7 +27,7 @@ export default function DoubleBedPage() {
                         key={index}
                         className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100"
                     >
-                        <div className="relative h-64 overflow-hidden">
+                        <div className="relative h-48 overflow-hidden">
                             <img
                                 src={variant.image}
                                 alt={`${bed.title} variant`}
