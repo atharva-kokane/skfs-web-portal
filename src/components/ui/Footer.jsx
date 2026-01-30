@@ -1,16 +1,24 @@
 import Link from "next/link";
+import {
+  RiPhoneFill,
+  RiMailFill,
+  RiFacebookCircleFill,
+  RiInstagramLine,
+  RiTwitterXFill,
+  RiSofaLine
+} from "react-icons/ri";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a111f] text-gray-300 py-12 px-6">
+    <footer className="bg-[#0a111f] text-gray-300 py-8 md:py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
-        <div className="flex flex-wrap justify-start gap-16 mb-10">
+        <div className="flex flex-col md:flex-row flex-wrap justify-start gap-6 md:gap-16 mb-8 md:mb-10">
           {/* Brand Section */}
-          <div className="flex-1 min-w-[250px] space-y-4">
+          <div className="flex-1 min-w-[250px] space-y-3 md:space-y-4">
             <div className="flex items-center gap-3">
               <div className="bg-[#10b981] p-2 rounded-lg">
-                <i className="ri-sofa-line text-white text-2xl"></i>
+                <RiSofaLine className="text-white text-2xl" />
               </div>
               <span className="text-[#10b981] font-semibold text-xl">
                 Shree Krishna Furniture
@@ -22,105 +30,108 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links Section */}
-          <div className="min-w-[150px]">
-            <h3 className="text-[#10b981] font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Our Store
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Clients
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Media
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Blogs
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline transition">
-                  Testimonial
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link
-                  href="/admin/login"
-                  className="inline-block px-4 py-1.5 border border-gray-500 rounded text-xs hover:bg-white hover:text-black transition"
-                >
-                  Admin Login
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Links Wrapper - Side by side on mobile */}
+          <div className="flex flex-row gap-4 justify-between w-full md:w-auto">
+            {/* Quick Links Section */}
+            <div className="flex-1">
+              <h3 className="text-[#10b981] font-semibold mb-4 md:mb-6">Quick Links</h3>
+              <ul className="space-y-2 md:space-y-3 text-sm">
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Our Store
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Clients
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Media
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline transition">
+                    Testimonial
+                  </Link>
+                </li>
+                <li className="pt-2">
+                  <Link
+                    href="/admin/login"
+                    className="inline-block px-4 py-1.5 border border-gray-500 rounded text-xs hover:bg-white hover:text-black transition"
+                  >
+                    Admin Login
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Our Products Section */}
-          <div className="min-w-[180px]">
-            <h3 className="text-[#10b981] font-semibold mb-6">Our Products</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/gallery?category=Bedroom" className="hover:underline transition">
-                  Bed Room
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=Living Room" className="hover:underline transition">
-                  Living Room
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=Dining" className="hover:underline transition">
-                  Dining Room
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=Living Room" className="hover:underline transition">
-                  Accent Furniture
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=Living Room" className="hover:underline transition">
-                  Sofa
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=All" className="hover:underline transition">
-                  Outdoor
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=All" className="hover:underline transition">
-                  Antique Furniture
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=All" className="hover:underline transition">
-                  Home Decor
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery?category=All" className="hover:underline transition">
-                  Chandeliers
-                </Link>
-              </li>
-            </ul>
+            {/* Our Products Section */}
+            <div className="flex-1">
+              <h3 className="text-[#10b981] font-semibold mb-4 md:mb-6">Our Products</h3>
+              <ul className="space-y-2 md:space-y-3 text-sm">
+                <li>
+                  <Link href="/gallery?category=Bedroom" className="hover:underline transition">
+                    Bed Room
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Living%20Room" className="hover:underline transition">
+                    Living Room
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Dining" className="hover:underline transition">
+                    Dining Room
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Living%20Room" className="hover:underline transition">
+                    Accent Furniture
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Sofa" className="hover:underline transition">
+                    Sofa
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Outdoor" className="hover:underline transition">
+                    Outdoor
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Antique%20Furniture" className="hover:underline transition">
+                    Antique Furniture
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Home%20Decor" className="hover:underline transition">
+                    Home Decor
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/gallery?category=Chandeliers" className="hover:underline transition">
+                    Chandeliers
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Reach Us Section */}
-          <div className="flex-1 min-w-[300px] space-y-4">
+          <div className="flex-1 w-full md:min-w-[300px] space-y-4">
             <h3 className="text-[#10b981] font-semibold mb-6">Reach Us</h3>
 
             {/* Google Maps Embed Box */}
@@ -140,19 +151,19 @@ export default function Footer() {
             {/* Contact Details & Socials */}
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
-                <i className="ri-phone-fill text-[#10b981]"></i>
+                <RiPhoneFill className="text-[#10b981]" />
                 <span>+91 98349 72706</span>
               </div>
               <div className="flex items-center gap-2">
-                <i className="ri-mail-fill text-[#10b981]"></i>
+                <RiMailFill className="text-[#10b981]" />
                 <span>info@shreekrishnafurniture.com</span>
               </div>
               <div className="flex gap-4 pt-2 text-xl text-gray-400">
-                <i className="ri-facebook-circle-fill cursor-pointer hover:text-[#10b981] transition"></i>
+                <RiFacebookCircleFill className="cursor-pointer hover:text-[#10b981] transition" />
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                  <i className="ri-instagram-line cursor-pointer hover:text-[#10b981] transition"></i>
+                  <RiInstagramLine className="cursor-pointer hover:text-[#10b981] transition" />
                 </a>
-                <i className="ri-twitter-x-fill cursor-pointer hover:text-[#10b981] transition"></i>
+                <RiTwitterXFill className="cursor-pointer hover:text-[#10b981] transition" />
               </div>
             </div>
           </div>

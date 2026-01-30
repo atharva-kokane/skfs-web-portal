@@ -105,7 +105,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="services-page-wrapper">
+    <div className="services-page-wrapper font-sans">
       {/* Poppins Google Font */}
 
 
@@ -142,8 +142,8 @@ export default function ServicesPage() {
           margin: auto;
           padding: 40px 20px;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 28px;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
         }
 
         .service-card {
@@ -301,6 +301,14 @@ export default function ServicesPage() {
            .service-cta-box {
               padding: 20px;
               margin: 20px;
+           }
+           .service-hero-header h2 {
+              font-size: 28px;
+           }
+           .service-card img {
+              height: 200px;
+              /* Ensure image is not cut off weirdly */
+              object-position: center;
            }
         }
       `}</style>

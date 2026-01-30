@@ -33,7 +33,7 @@ const HeroSlider = () => {
     }, []);
 
     return (
-        <section className="relative h-[520px] overflow-hidden">
+        <section className="relative h-[60vh] md:h-[520px] overflow-hidden">
             {/* hero section image height */}
             {slides.map((s, i) => (
                 <div
@@ -46,7 +46,7 @@ const HeroSlider = () => {
                     <div className="absolute inset-0 bg-black/50" />
 
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-3">{s.title}</h1>
+                        <h1 className="text-3xl md:text-5xl font-bold mb-3">{s.title}</h1>
                         <p className="mb-6">{s.subtitle}</p>
 
                         <div className="flex gap-4">
@@ -73,7 +73,7 @@ export default function App() {
             <HeroSlider />
 
             {/* Welcome */}
-            <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 py-24 px-6">
+            <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 py-16 md:py-24 px-6">
                 <div>
                     <h2 className="text-3xl font-bold mb-4">Welcome to Our Studio</h2>
 
@@ -95,7 +95,7 @@ export default function App() {
             </section>
 
             {/* Stats */}
-            <section className="bg-[#8B6E4E] py-24">
+            <section className="bg-[#8B6E4E] py-16 md:py-24">
                 <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center text-white px-6">
                     <Stat num="500+" label="Projects Completed" />
                     <Stat num="250+" label="Happy Clients" />
@@ -108,7 +108,7 @@ export default function App() {
             <section className="bg-gray-50 py-24">
                 <h2 className="text-center text-3xl font-bold mb-12">Our Services</h2>
 
-                <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 px-6">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6">
                     <Service icon={Bed} title="Beds" />
                     <Service icon={DoorOpen} title="Wardrobes" />
                     <Service icon={Armchair} title="Sofas" />
@@ -117,10 +117,10 @@ export default function App() {
             </section>
 
             {/* Why Choose */}
-            <section className="py-24 max-w-7xl mx-auto px-6">
+            <section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
                 <h2 className="text-center text-3xl font-bold mb-12">Why Choose Us?</h2>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <Feature
                         icon={Award}
                         title="Custom Design"
@@ -165,7 +165,7 @@ export default function App() {
                     </p>
                 </div>
 
-                <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 px-6">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
                     <Review
                         name="Rajesh Sharma"
                         rating={5}

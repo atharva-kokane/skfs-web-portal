@@ -4,6 +4,7 @@
 import { useState } from "react";
 // Import Link from next/link
 import Link from "next/link";
+import Image from "next/image";
 
 // Import icons from react-icons library (Material Design icons)
 import {
@@ -30,11 +31,12 @@ const categories = [
         id: 1,
         name: "BED ROOM",
         icon: MdKingBed,
+        iconSrc: "/icons/bed.svg",
         subcategories: [
-            "Single Beds",
-            "Double Beds",
-            "Queen Beds",
-            "King Beds",
+            { name: "Single Beds", href: "/beds/single" },
+            { name: "Double Beds", href: "/beds/double" },
+            { name: "Queen Beds", href: "/beds/queen" },
+            { name: "King Beds", href: "/beds/king" },
             "Bunk Beds",
             "Daybeds",
             "Platform Beds",
@@ -45,6 +47,7 @@ const categories = [
         id: 2,
         name: "LIVING ROOM",
         icon: MdChair,
+        iconSrc: "/icons/living.svg",
         subcategories: [
             "Sofas & Couches",
             "Sectionals",
@@ -60,6 +63,7 @@ const categories = [
         id: 3,
         name: "DINING ROOM",
         icon: MdRestaurant,
+        iconSrc: "/icons/table-etiquette.svg",
         subcategories: [
             "Twelve Seater Dining Tables",
             "Ten Seater Dining Tables",
@@ -78,6 +82,7 @@ const categories = [
         id: 4,
         name: "SOFA",
         icon: MdWeekend,
+        iconSrc: "/icons/seater-sofa.svg",
         subcategories: [
             "Sofas & Couches",
             "Sectionals",
@@ -93,6 +98,7 @@ const categories = [
         id: 5,
         name: "OUTDOOR",
         icon: MdDeck,
+        iconSrc: "/icons/chairs.svg",
         subcategories: [
             "Outdoor Tables",
             "Outdoor Chairs",
@@ -104,6 +110,7 @@ const categories = [
         id: 6,
         name: "ANTIQUE FURNITURE",
         icon: MdHistory,
+        iconSrc: "/icons/shelf.svg",
         subcategories: [
             "Antique Tables",
             "Antique Chairs",
@@ -115,6 +122,7 @@ const categories = [
         id: 7,
         name: "HOME DECOR",
         icon: MdHome,
+        iconSrc: "/icons/lamp.svg",
         subcategories: [
             "Home Decor",
             "Hanging Lights or Ceiling Lights",
@@ -156,10 +164,10 @@ export function CategoryNav() {
     return (
         <div className="relative">
             {/* Category navigation bar with darker walnut background */}
-            <nav className="bg-[#5A3A28] text-white">
+            <nav className="hidden lg:block bg-[#5A3A28] text-white">
                 <div className="container mx-auto px-4">
-                    {/* Flex container to distribute categories evenly */}
-                    <div className="flex items-center justify-around">
+                    {/* Flex container to distribute categories evenly - Scroll on Mobile, Wrap on Tablet+ */}
+                    <div className="flex items-center overflow-x-auto md:overflow-visible no-scrollbar scroll-smooth gap-4 lg:gap-x-4 xl:gap-x-8 pb-2 md:pb-0 justify-between lg:flex-nowrap">
 
                         {/* ========================================
                 CATEGORY ITEMS LOOP
@@ -175,32 +183,52 @@ export function CategoryNav() {
                                     onMouseEnter={() => setActiveCategory(category.id)}
                                     onMouseLeave={() => setActiveCategory(null)}
                                 >
-                                    <button className="flex flex-col items-center gap-2 py-4 px-4 hover:bg-[#4A2F20] transition-colors">
-                                        <Icon className="w-6 h-6" />
+                                    <Link
+                                        href={`/gallery?category=${encodeURIComponent(category.name)}`}
+                                        className="flex flex-col items-center gap-2 py-4 px-4 hover:bg-[#4A2F20] transition-colors min-w-[100px] md:min-w-0 flex-shrink-0"
+                                    >
+                                        {category.iconSrc ? (
+                                            <div className="w-8 h-8 relative">
+                                                <Image
+                                                    src={category.iconSrc}
+                                                    alt={category.name}
+                                                    fill
+                                                    className="object-contain invert brightness-0"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <Icon className="w-8 h-8" />
+                                        )}
                                         <span className="text-sm font-medium whitespace-nowrap">
                                             {category.name}
                                         </span>
-                                    </button>
+                                    </Link>
 
                                     {/* ========================================
                       DROPDOWN MENU
                       ======================================== */}
                                     {category.subcategories && activeCategory === category.id && (
                                         <div
-                                            className={`absolute top-full mt-0 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 ${isLastItem ? 'right-0' : 'left-0'
+                                            className={`hidden md:block absolute top-full mt-0 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 ${isLastItem ? 'right-0' : 'left-0'
                                                 }`}
                                         >
                                             <div className="py-2">
-                                                {category.subcategories.map((subcategory, subIndex) => (
-                                                    <Link
-                                                        key={subIndex}
-                                                        href="#"
-                                                        className="flex items-center justify-between px-4 py-1 text-[#5A3A28] hover:bg-gray-50 transition-colors group"
-                                                    >
-                                                        <span className="font-medium">{subcategory}</span>
-                                                        <MdChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#5A3A28]" />
-                                                    </Link>
-                                                ))}
+                                                {category.subcategories.map((subcategory, subIndex) => {
+                                                    // Determine name and href based on whether subcategory is string or object
+                                                    const name = typeof subcategory === 'string' ? subcategory : subcategory.name;
+                                                    const href = typeof subcategory === 'string' ? '#' : subcategory.href;
+
+                                                    return (
+                                                        <Link
+                                                            key={subIndex}
+                                                            href={href}
+                                                            className="flex items-center justify-between px-4 py-1 text-[#5A3A28] hover:bg-gray-50 transition-colors group"
+                                                        >
+                                                            <span className="font-medium">{name}</span>
+                                                            <MdChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#5A3A28]" />
+                                                        </Link>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     )}

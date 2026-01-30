@@ -79,9 +79,11 @@
 @layer base {
 
   html,
-  body {
-    font-family: var(--font-poppins), system-ui, sans-serif;
-    scrollbar-gutter: stable; /* Reserve space for scrollbar to prevent layout shift */
+  body,
+  * {
+    font-family: var(--font-poppins), system-ui, sans-serif !important;
+    scrollbar-gutter: stable;
+    /* Reserve space for scrollbar to prevent layout shift */
   }
 
   /* Custom Scrollbar Styling */
