@@ -129,3 +129,21 @@
     font-family: inherit;
   }
 }
+
+@media print {
+  body * {
+    display: none !important;
+  }
+
+  #ai-quote-card {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 16px;
+  }
+
+  #ai-quote-card * {
+    display: block !important;
+  }
+}
