@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="bg-[#001F3F] text-gray-300 py-8 md:py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
-        <div className="flex flex-col md:flex-row flex-wrap justify-start gap-6 md:gap-16 mb-8 md:mb-10">
+        <div className="flex flex-col md:flex-row flex-wrap justify-between gap-6 md:gap-8 mb-8 md:mb-10">
           {/* Brand Section */}
           <div className="flex-1 min-w-[250px] space-y-3 md:space-y-4">
             <div className="flex items-center gap-3">
@@ -131,21 +131,20 @@ export default function Footer() {
           </div>
 
           {/* Reach Us Section */}
-          <div className="flex-1 w-full md:min-w-[300px] space-y-4">
+          <div className="flex-1 w-full md:w-auto md:min-w-[300px] space-y-4">
             <h3 className="text-[#10b981] font-semibold mb-6">Reach Us</h3>
 
             {/* Google Maps Embed Box */}
-            <div className="w-full h-40 rounded-lg overflow-hidden border border-gray-700">
+            <div className="w-full h-40 rounded-lg overflow-hidden relative">
               <iframe
                 title="Google Maps Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.5647!2d73.9015!3d18.5437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDMyJzM3LjMiTiA3M8KwNTQnMDUuNCJF!5e0!3m2!1sen!2sin!4v1706260000000"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
+                className="absolute inset-0 w-full h-full border-0"
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
+              <div className="absolute inset-0 border border-gray-700 rounded-lg pointer-events-none"></div>
             </div>
 
             {/* Contact Details & Socials */}

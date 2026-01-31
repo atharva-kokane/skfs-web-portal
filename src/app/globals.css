@@ -5,6 +5,7 @@
     transform: scale(0.95);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -94,30 +95,67 @@
 
 @layer base {
 
+  html {
+    scrollbar-gutter: stable;
+  }
+
   html,
   body,
   * {
     font-family: var(--font-poppins), system-ui, sans-serif !important;
-    scrollbar-gutter: stable;
     /* Reserve space for scrollbar to prevent layout shift */
   }
 
   /* Custom Scrollbar Styling */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 14px;
+    /* Slightly wider for bold look */
+  }
+
+  ::-webkit-scrollbar-button:single-button {
+    background-color: #1F2937;
+    /* Dark background for buttons */
+    display: block;
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 18px;
+    /* Slightly taller */
+    width: 14px;
+  }
+
+  /* Up Arrow - Bold Triangle */
+  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M3 15h18l-9-9-9 9z'/%3E%3C/svg%3E");
+  }
+
+  /* Down Arrow - Bold Triangle */
+  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M3 9h18l-9 9-9-9z'/%3E%3C/svg%3E");
+  }
+
+  ::-webkit-scrollbar-button:single-button:vertical:decrement:hover,
+  ::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+    background-color: #374151;
+    /* Lighter on hover */
+    fill: #F3F4F6;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #111827;
+    /* Dark track matching image */
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-orange-600);
+    background: #6B7280;
+    /* Gray thumb matching image */
     border-radius: 10px;
+    border: 2px solid #111827;
+    /* Border to create separation from track */
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-orange-700);
+    background: #9CA3AF;
   }
 
   *,

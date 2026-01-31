@@ -23,11 +23,11 @@ export default function AdminDashboard() {
 
     // Load quotes from localStorage
     React.useEffect(() => {
-            const fetchQuotes = async () => {
-                const { data, error } = await supabase
-                    .from("quotes")
-                    .select(
-                        `
+        const fetchQuotes = async () => {
+            const { data, error } = await supabase
+                .from("quotes")
+                .select(
+                    `
             quote_id,
             furniture_type,
             room_type,
@@ -41,68 +41,68 @@ export default function AdminDashboard() {
               contact
             )
           `,
-                    )
-                    .order("created_on", { ascending: false });
-    
-                if (error) {
-                    console.error("Error fetching quotes:", error);
-                    return;
-                }
-    
-                // reshape data to match your UI
-                const formattedQuotes = data.map((q) => ({
-                    id: q.quote_id,
-                    name: q.users?.name,
-                    contact: q.users?.contact,
-                    furnitureType: q.furniture_type,
-                    roomType: q.room_type,
-                    roomSize: q.room_size,
-                    budget: q.budget_range,
-                    requirements: q.description,
-                    status: q.status,
-                    date: new Date(q.created_on).toLocaleDateString(),
-                }));
-    
-                console.log(formattedQuotes);
-    
-                setQuotes(formattedQuotes);
-            };
-    
-            fetchQuotes();
-        }, []);
+                )
+                .order("created_on", { ascending: false });
+
+            if (error) {
+                console.error("Error fetching quotes:", error);
+                return;
+            }
+
+            // reshape data to match your UI
+            const formattedQuotes = data.map((q) => ({
+                id: q.quote_id,
+                name: q.users?.name,
+                contact: q.users?.contact,
+                furnitureType: q.furniture_type,
+                roomType: q.room_type,
+                roomSize: q.room_size,
+                budget: q.budget_range,
+                requirements: q.description,
+                status: q.status,
+                date: new Date(q.created_on).toLocaleDateString(),
+            }));
+
+            console.log(formattedQuotes);
+
+            setQuotes(formattedQuotes);
+        };
+
+        fetchQuotes();
+    }, []);
 
     // Update quote status
     const updateStatus = async (id, newStatus) => {
-            const { error } = await supabase
-                .from("quotes")
-                .update({ status: newStatus })
-                .eq("quote_id", id);
-            if (error) {
-                alert("Failed to update status");
-                return;
-            }
-    
-            setQuotes((prev) =>
-                prev.map((q) => (q.id === id ? { ...q, status: newStatus } : q)),
-            );
-        };
+        const { error } = await supabase
+            .from("quotes")
+            .update({ status: newStatus })
+            .eq("quote_id", id);
+        if (error) {
+            alert("Failed to update status");
+            return;
+        }
+
+        setQuotes((prev) =>
+            prev.map((q) => (q.id === id ? { ...q, status: newStatus } : q)),
+        );
+    };
 
     // Delete quote
     const deleteQuote = async (id) => {
-            if (!confirm("Are you sure you want to delete this quote?")) return;
-    
-            const { error } = await supabase
-                .from("quotes")
-                .delete()
-                .eq("quote_id", id);
-    
-            if (error) {
-                alert("Failed deleting quote");
-                return;
-            }
-    
-            setQuotes((prev) => prev.filter((q) => q.id != id));
-        };
+        if (!confirm("Are you sure you want to delete this quote?")) return;
+
+        const { error } = await supabase
+            .from("quotes")
+            .delete()
+            .eq("quote_id", id);
+
+        if (error) {
+            alert("Failed deleting quote");
+            return;
+        }
+
+        setQuotes((prev) => prev.filter((q) => q.id != id));
+    };
 
     const handleLogout = async () => {
         try {
@@ -122,51 +122,51 @@ export default function AdminDashboard() {
     };
 
     const statuses = ["All Status", "New", "Contacted", "Finalized"];
-    
-        // Calculate real-time stats
-        const stats = [
-            {
-                label: "Total Quotes",
-                value: quotes.length,
-                icon: <Package className="w-10 h-10 text-gray-400" />,
-            },
-            {
-                label: "New Requests",
-                value: quotes.filter((q) => q.status === "New").length,
-                color: "text-blue-600",
-                badge: (
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                        <span className="text-blue-600 text-lg font-bold">
-                            {quotes.filter((q) => q.status === "New").length}
-                        </span>
-                    </div>
-                ),
-            },
-            {
-                label: "Contacted",
-                value: quotes.filter((q) => q.status === "Contacted").length,
-                color: "text-yellow-600",
-                badge: (
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                        <span className="text-yellow-600 text-lg font-bold">
-                            {quotes.filter((q) => q.status === "Contacted").length}
-                        </span>
-                    </div>
-                ),
-            },
-            {
-                label: "Finalized",
-                value: quotes.filter((q) => q.status === "Finalized").length,
-                color: "text-green-600",
-                badge: (
-                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                        <span className="text-green-600 text-lg font-bold">
-                            {quotes.filter((q) => q.status === "Finalized").length}
-                        </span>
-                    </div>
-                ),
-            },
-        ];
+
+    // Calculate real-time stats
+    const stats = [
+        {
+            label: "Total Quotes",
+            value: quotes.length,
+            icon: <Package className="w-10 h-10 text-gray-400" />,
+        },
+        {
+            label: "New Requests",
+            value: quotes.filter((q) => q.status === "New").length,
+            color: "text-blue-600",
+            badge: (
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <span className="text-blue-600 text-lg font-bold">
+                        {quotes.filter((q) => q.status === "New").length}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            label: "Contacted",
+            value: quotes.filter((q) => q.status === "Contacted").length,
+            color: "text-yellow-600",
+            badge: (
+                <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                    <span className="text-yellow-600 text-lg font-bold">
+                        {quotes.filter((q) => q.status === "Contacted").length}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            label: "Finalized",
+            value: quotes.filter((q) => q.status === "Finalized").length,
+            color: "text-green-600",
+            badge: (
+                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <span className="text-green-600 text-lg font-bold">
+                        {quotes.filter((q) => q.status === "Finalized").length}
+                    </span>
+                </div>
+            ),
+        },
+    ];
 
     // Filter quotes based on search and status
     // Filter quotes based on search and status
@@ -196,32 +196,34 @@ export default function AdminDashboard() {
         <div className="min-h-screen bg-[#F9FAFB] py-12 px-4 font-sans">
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
-                <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-6">
-                    <div className="flex flex-col items-start gap-4">
+                {/* Header Section */}
+                <div className="mb-8 md:mb-12">
+                    <div className="flex items-center justify-between mb-6">
                         <Link
                             href="/"
-                            className="h-8 px-3 rounded-md border border-gray-200 bg-white inline-flex items-center text-sm font-medium hover:bg-gray-50 transition-colors"
+                            className="h-9 px-4 rounded-lg bg-blue-600 inline-flex items-center text-sm font-medium text-white hover:bg-blue-700 transition-colors shadow-sm"
                         >
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             Back to Home
                         </Link>
-                        <div>
-                            <h1 className="text-4xl font-bold text-black mb-2">
-                                Admin Dashboard
-                            </h1>
-                            <p className="text-base text-gray-600">
-                                Manage your furniture quote requests
-                            </p>
-                        </div>
+
+                        <button
+                            onClick={handleLogout}
+                            className="h-9 px-4 py-2 rounded-lg bg-red-600 inline-flex items-center text-sm font-medium text-white hover:bg-red-700 transition-colors shadow-sm"
+                        >
+                            <LogOut className="w-4 h-4 mr-2" />
+                            Logout
+                        </button>
                     </div>
 
-                    <button
-                        onClick={handleLogout}
-                        className="h-9 px-4 py-2 rounded-md border border-gray-200 bg-white inline-flex items-center text-sm font-medium hover:bg-gray-50 transition-colors"
-                    >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        Logout
-                    </button>
+                    <div>
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                            Admin Dashboard
+                        </h1>
+                        <p className="text-base text-gray-600">
+                            Manage your furniture quote requests
+                        </p>
+                    </div>
                 </div>
 
                 {/* Statistics Cards */}
@@ -315,10 +317,10 @@ export default function AdminDashboard() {
                         {filteredQuotes.map((quote) => (
                             <div
                                 key={quote.id}
-                                className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm"
+                                className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm"
                             >
                                 {/* Header: Name & Status */}
-                                <div className="flex justify-between items-start mb-4">
+                                <div className="flex flex-col sm:flex-row justify-between items-start mb-4 gap-4">
                                     <div>
                                         <h3 className="text-xl font-bold text-gray-900">
                                             {quote.name}
@@ -342,17 +344,16 @@ export default function AdminDashboard() {
                                     <div className="flex items-center gap-3">
                                         <span
                                             className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide
-                                            ${
-                                                quote.status === "New"
+                                            ${quote.status === "New"
                                                     ? "bg-blue-100 text-blue-700"
                                                     : quote.status ===
                                                         "Contacted"
-                                                      ? "bg-yellow-100 text-yellow-700"
-                                                      : quote.status ===
-                                                          "Finalized"
-                                                        ? "bg-green-100 text-green-700"
-                                                        : "bg-gray-100 text-gray-700"
-                                            }`}
+                                                        ? "bg-yellow-100 text-yellow-700"
+                                                        : quote.status ===
+                                                            "Finalized"
+                                                            ? "bg-green-100 text-green-700"
+                                                            : "bg-gray-100 text-gray-700"
+                                                }`}
                                         >
                                             {quote.status}
                                         </span>
@@ -432,16 +433,15 @@ export default function AdminDashboard() {
                                                         )
                                                     }
                                                     className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all
-                                                    ${
-                                                        quote.status === status
+                                                    ${quote.status === status
                                                             ? status === "New"
                                                                 ? "bg-blue-600 text-white"
                                                                 : status ===
                                                                     "Contacted"
-                                                                  ? "bg-yellow-500 text-white"
-                                                                  : "bg-green-600 text-white shadow-sm"
+                                                                    ? "bg-yellow-500 text-white"
+                                                                    : "bg-green-600 text-white shadow-sm"
                                                             : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-                                                    }`}
+                                                        }`}
                                                 >
                                                     {status}
                                                 </button>

@@ -33,7 +33,7 @@ const HeroSlider = () => {
     }, []);
 
     return (
-        <section className="relative h-[60vh] md:h-[520px] overflow-hidden">
+        <section className="relative w-full h-[60vh] md:h-[520px] overflow-hidden">
             {/* hero section image height */}
             {slides.map((s, i) => (
                 <div
