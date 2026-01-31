@@ -62,8 +62,7 @@ export default function ServicesPage() {
     },
     {
       title: "TV Units",
-      description:
-        "Stylish TV units that enhance your living room aesthetics",
+      description: "Stylish TV units that enhance your living room aesthetics",
       features: [
         "Wall-Mounted Units",
         "Storage Drawers",
@@ -107,7 +106,6 @@ export default function ServicesPage() {
   return (
     <div className="services-page-wrapper">
       {/* Poppins Google Font */}
-
 
       <style>{`
         .services-page-wrapper {
@@ -337,7 +335,12 @@ export default function ServicesPage() {
               <div className="service-footer">
                 <span className="service-price">{item.price}</span>
 
-                <Link href="/contact-us" className="service-action-btn inline-block no-underline">Get Quote</Link>
+               <Link 
+                  href={`/contact-us?furniture=${encodeURIComponent(item.title)}&req=${encodeURIComponent(item.description)}`} 
+                  className="service-action-btn"
+                >
+                  Get Quote
+                </Link>
               </div>
             </div>
           </div>
@@ -352,7 +355,10 @@ export default function ServicesPage() {
           estimated prices instantly!
         </p>
 
-        <Link href="/contact-us" className="service-white-btn inline-block no-underline">
+        <Link
+          href="/contact-us"
+          className="service-white-btn inline-block no-underline"
+        >
           Request Free Quote
         </Link>
       </div>

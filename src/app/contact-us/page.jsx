@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import SubmitButton from   "@/components/submit-quote-button" 
-
+import { useState, useEffect ,Suspense } from "react";
+import SubmitButton from "@/components/submit-quote-button";
+import { useSearchParams } from "next/navigation";
 
 export default function RequestQuotePage() {
+  const searchParams = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -13,12 +14,29 @@ export default function RequestQuotePage() {
     roomType: "",
     roomSize: "",
     budget: "",
-    requirements: ""
+    requirements: "",
   });
+ useEffect(() => {
+    const furniture = searchParams.get("furniture");
+    const req = searchParams.get("req");
 
+    if (furniture || req) {
+      setFormData((prev) => ({
+        ...prev,
+        // Using || prev.furnitureType ensures we don't overwrite if params are empty
+        furnitureType: furniture || prev.furnitureType,
+        requirements: req ? `I am interested in: ${req}` : prev.requirements
+      }));
+    }
+  }, [searchParams]);
   const handleSubmit = () => {
     // Basic validation
-    if (!formData.name || !formData.contact || !formData.furnitureType || !formData.budget) {
+    if (
+      !formData.name ||
+      !formData.contact ||
+      !formData.furnitureType ||
+      !formData.budget
+    ) {
       alert("Please fill in all required fields marked with *");
       return;
     }
@@ -28,12 +46,17 @@ export default function RequestQuotePage() {
       id: Date.now(),
       date: new Date().toLocaleDateString(),
       status: "New",
-      ...formData
+      ...formData,
     };
 
     // Save to localStorage
-    const existingQuotes = JSON.parse(localStorage.getItem("skfs_quotes") || "[]");
-    localStorage.setItem("skfs_quotes", JSON.stringify([newQuote, ...existingQuotes]));
+    const existingQuotes = JSON.parse(
+      localStorage.getItem("skfs_quotes") || "[]",
+    );
+    localStorage.setItem(
+      "skfs_quotes",
+      JSON.stringify([newQuote, ...existingQuotes]),
+    );
 
     setSubmitted(true);
     // Reset form
@@ -44,7 +67,7 @@ export default function RequestQuotePage() {
       roomType: "",
       roomSize: "",
       budget: "",
-      requirements: ""
+      requirements: "",
     });
 
     // Hide success message after 3 seconds
@@ -63,12 +86,12 @@ export default function RequestQuotePage() {
       </p>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-
         {/* LEFT CARD */}
         <div className="bg-white border rounded-xl p-6 shadow-sm">
           <h3 className="font-semibold text-sm mb-1">Your Requirements</h3>
           <p className="text-xs text-gray-500 mb-5">
-            Fill in the details below and get personalized furniture recommendations
+            Fill in the details below and get personalized furniture
+            recommendations
           </p>
 
           <div className="space-y-4 text-xs">
@@ -78,7 +101,9 @@ export default function RequestQuotePage() {
                 placeholder="Your full name"
                 className="w-full bg-gray-100 rounded-md px-3 py-2 outline-none"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
               />
             </div>
 
@@ -88,7 +113,9 @@ export default function RequestQuotePage() {
                 placeholder="+91 98765 43210"
                 className="w-full bg-gray-100 rounded-md px-3 py-2 outline-none"
                 value={formData.contact}
-                onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, contact: e.target.value })
+                }
               />
             </div>
 
@@ -97,15 +124,18 @@ export default function RequestQuotePage() {
               <select
                 className="w-full bg-gray-100 rounded-md px-3 py-2"
                 value={formData.furnitureType}
-                onChange={(e) => setFormData({ ...formData, furnitureType: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, furnitureType: e.target.value })
+                }
               >
                 <option value="">Select furniture type</option>
-                <option>Bed</option>
-                <option>Sofa</option>
-                <option>Wardrobe</option>
-                <option>Modular Kitchen</option>
-                <option>TV Unit</option>
-                <option>Dining Set</option>
+                <option value="Beds">Beds</option>
+              <option value="Wardrobes">Wardrobes</option>
+              <option value="Sofas & Seating">Sofas & Seating</option>
+              <option value="Modular Kitchen">Modular Kitchen</option>
+              <option value="TV Units">TV Units</option>
+              <option value="Study Tables">Study Tables</option>
+              <option value="Dining Sets">Dining Sets</option>
               </select>
             </div>
 
@@ -114,7 +144,9 @@ export default function RequestQuotePage() {
               <select
                 className="w-full bg-gray-100 rounded-md px-3 py-2"
                 value={formData.roomType}
-                onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, roomType: e.target.value })
+                }
               >
                 <option value="">Select room type (optional)</option>
                 <option>Bedroom</option>
@@ -125,12 +157,16 @@ export default function RequestQuotePage() {
             </div>
 
             <div>
-              <label className="font-medium block mb-1">Room Size (optional)</label>
+              <label className="font-medium block mb-1">
+                Room Size (optional)
+              </label>
               <input
                 placeholder="e.g. 10x12 feet"
                 className="w-full bg-gray-100 rounded-md px-3 py-2 outline-none"
                 value={formData.roomSize}
-                onChange={(e) => setFormData({ ...formData, roomSize: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, roomSize: e.target.value })
+                }
               />
             </div>
 
@@ -139,7 +175,9 @@ export default function RequestQuotePage() {
               <select
                 className="w-full bg-gray-100 rounded-md px-3 py-2"
                 value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, budget: e.target.value })
+                }
               >
                 <option value="">Select your budget</option>
                 <option>₹50k - ₹1L</option>
@@ -149,12 +187,16 @@ export default function RequestQuotePage() {
             </div>
 
             <div>
-              <label className="font-medium block mb-1">Custom Requirements</label>
+              <label className="font-medium block mb-1">
+                Custom Requirements
+              </label>
               <textarea
                 placeholder="Tell us about your specific needs, preferences, or any special requirements..."
                 className="w-full bg-gray-100 rounded-md px-3 py-2 h-20 resize-none outline-none"
                 value={formData.requirements}
-                onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, requirements: e.target.value })
+                }
               />
             </div>
           </div>
@@ -167,11 +209,8 @@ export default function RequestQuotePage() {
               ✨ Get AI Suggestions
             </button>
 
-          
-          <SubmitButton formData={formData} />
-              
+            <SubmitButton formData={formData} />
 
-    
             {/*<button
               onClick={handleSubmit}
               className="flex-1 bg-orange-600 text-white rounded-md py-2 text-xs font-medium hover:bg-orange-700"
@@ -214,14 +253,13 @@ export default function RequestQuotePage() {
 
             <div>
               <b>💲 Price Estimation</b>
-              <p className="text-gray-600">
-                Instant rough price estimates
-              </p>
+              <p className="text-gray-600">Instant rough price estimates</p>
             </div>
           </div>
 
           <p className="text-[11px] text-gray-600 mt-5">
-            Fill in the form and click <b>“Get AI Suggestions”</b> to receive personalized recommendations!
+            Fill in the form and click <b>“Get AI Suggestions”</b> to receive
+            personalized recommendations!
           </p>
         </div>
       </div>
