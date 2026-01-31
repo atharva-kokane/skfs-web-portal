@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={poppins.variable}>
             <head>
                 {/* Remix Icon CDN */}
                 <link
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
                     rel="stylesheet"
                 />
             </head>
-            <body className={`${poppins.variable} font-sans antialiased`}>
+            <body className="font-sans antialiased">
                 <ClientLayout>{children}</ClientLayout>
             </body>
         </html>

@@ -48,9 +48,13 @@ npm install react-icons
 ```
 now hit npm run dev again
 
-<hr>
+
 
 ## extra packages to install for authentication
 ```bash
 npm install @supabase/ssr @supabase/supabase-js
+```
+## Extra Packages for Gorq AI 
+```bash
+npm install groq-sdk
 ```
