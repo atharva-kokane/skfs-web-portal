@@ -62,8 +62,7 @@ export default function ServicesPage() {
     },
     {
       title: "TV Units",
-      description:
-        "Stylish TV units that enhance your living room aesthetics",
+      description: "Stylish TV units that enhance your living room aesthetics",
       features: [
         "Wall-Mounted Units",
         "Storage Drawers",
@@ -105,9 +104,8 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="services-page-wrapper font-sans">
+    <div className="services-page-wrapper">
       {/* Poppins Google Font */}
-
 
       <style>{`
         .services-page-wrapper {
@@ -142,8 +140,8 @@ export default function ServicesPage() {
           margin: auto;
           padding: 40px 20px;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 28px;
         }
 
         .service-card {
@@ -190,7 +188,7 @@ export default function ServicesPage() {
           width: 26px;
           height: 26px;
           border-radius: 6px;
-          background: #0EA5E9;
+          background: #ff4d00;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -201,7 +199,7 @@ export default function ServicesPage() {
 
         .service-content h3 {
           margin: 0;
-          color: #0EA5E9;
+          color: #ff4d00;
           font-weight: 600;
           font-size: 1.17em;
         }
@@ -237,57 +235,47 @@ export default function ServicesPage() {
         }
 
         .service-price {
-          color: #0EA5E9;
+          color: #ff4d00;
           font-weight: 600;
           font-size: 14px;
         }
 
         .service-cta-box {
-          background-color: #f0f9ff;
-          color: #1f2937;
-          padding: 4rem 2rem;
+          background-color:#ef6c00;
+          color: black;
+          padding: 20px 170px;
           text-align: center;
-          border-radius: 1.5rem;
-          max-width: 800px;
+          border-radius: 12px;
+          max-width: 700px;
           margin: 50px auto;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         .service-cta-box h2 {
-          font-size: 1.875rem;
-          line-height: 2.25rem;
-          font-weight: 700;
-          margin-bottom: 1rem;
-          color: #111827;
+          font-size: 32px;
+          margin-bottom: 16px;
         }
 
         .service-cta-box p {
-          font-size: 1.125rem;
-          line-height: 1.75rem;
-          color: #4b5563;
-          margin-bottom: 2rem;
-          max-width: 36rem;
-          margin-left: auto;
-          margin-right: auto;
+          font-size: 18px;
+          margin-bottom: 24px;
+          line-height: 1.6;
         }
 
         .service-white-btn {
-          background-color: #0284C7;
-          color: white;
+          background-color: white;
+          color: orange;
           border: none;
-          padding: 0.75rem 2rem;
-          font-size: 1rem;
-          font-weight: 500;
-          border-radius: 0.75rem;
+           padding: 14px 32px;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 8px;
           cursor: pointer;
-          transition: all 0.2s;
-          box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2);
+          cursor: pointer;
         }
 
         .service-white-btn:hover {
-          background-color: #0369A1;
-          transform: translateY(-1px);
-          box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+          background-color: black;
+          color: white;
         }
 
         .service-action-btn {
@@ -302,23 +290,15 @@ export default function ServicesPage() {
         }
 
         .service-action-btn:hover {
-          background: #0EA5E9;
+          background: #ff4d00;
           color: #fff;
-          border-color: #0EA5E9;
+          border-color: #ff4d00;
         }
         
         @media (max-width: 768px) {
            .service-cta-box {
               padding: 20px;
               margin: 20px;
-           }
-           .service-hero-header h2 {
-              font-size: 28px;
-           }
-           .service-card img {
-              height: 200px;
-              /* Ensure image is not cut off weirdly */
-              object-position: center;
            }
         }
       `}</style>
@@ -355,7 +335,12 @@ export default function ServicesPage() {
               <div className="service-footer">
                 <span className="service-price">{item.price}</span>
 
-                <Link href="/contact-us" className="service-action-btn inline-block no-underline">Get Quote</Link>
+               <Link 
+                  href={`/contact-us?furniture=${encodeURIComponent(item.title)}&req=${encodeURIComponent(item.description)}`} 
+                  className="service-action-btn"
+                >
+                  Get Quote
+                </Link>
               </div>
             </div>
           </div>
@@ -370,7 +355,10 @@ export default function ServicesPage() {
           estimated prices instantly!
         </p>
 
-        <Link href="/contact-us" className="service-white-btn inline-block no-underline">
+        <Link
+          href="/contact-us"
+          className="service-white-btn inline-block no-underline"
+        >
           Request Free Quote
         </Link>
       </div>
