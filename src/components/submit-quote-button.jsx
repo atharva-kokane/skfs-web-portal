@@ -23,6 +23,12 @@ export default function SubmitButton({ formData, onSuccess }) {
           return;
         }
 
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        if (!nameRegex.test(formData.name)) {
+          alert("Name should only contain letters and spaces.");
+          return;
+        }
+
         await saveQuote(
           formData.name,
           formData.contact,
