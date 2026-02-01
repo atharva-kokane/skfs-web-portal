@@ -12,6 +12,7 @@ import {
     MdKingBed, MdChair, MdRestaurant, MdWeekend, MdDeck, MdHistory
 } from "react-icons/md";
 import { GiOfficeChair } from "react-icons/gi";
+import SearchBar from "@/components/SearchBar";
 
 
 /**
@@ -20,12 +21,9 @@ import { GiOfficeChair } from "react-icons/gi";
  * ========================================
  */
 export function Header() {
-    const [currentTermIndex, setCurrentTermIndex] = useState(0);
-    const [isFocused, setIsFocused] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProductsOpen, setIsProductsOpen] = useState(false);
     const [activeSubCategory, setActiveSubCategory] = useState(null);
-    const searchTerms = ["furniture", "sofa", "bed", "lamps", "dining table", "wardrobe"];
 
     const categories = [
         {
@@ -146,14 +144,6 @@ export function Header() {
         },
     ];
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentTermIndex((prevIndex) => (prevIndex + 1) % searchTerms.length);
-        }, 4000); // Change every 4 seconds
-
-        return () => clearInterval(intervalId); // Cleanup on unmount
-    }, []);
-
     return (
         <header className=" sticky top-0 z-50 bg-[#F9F5F0] border-b border-[#E5E7EB]">
             {/* Main container - uses flex and justify-between for spacing */}
@@ -177,26 +167,7 @@ export function Header() {
             SEARCH BAR SECTION - START
             ======================================== */}
                 <div className="hidden lg:block flex-1 max-w-md mx-4 xl:mx-8">
-                    <div className="relative">
-                        {/* Search input field */}
-                        <input
-                            type="text"
-                            placeholder={isFocused ? "" : `Search for ${searchTerms[currentTermIndex]}...`}
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
-                            className="w-full pl-4 pr-10 py-2 border-2 border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent transition-all"
-                        // TODO: Add onChange handler for search functionality
-                        // onChange={(e) => handleSearch(e.target.value)}
-                        />
-                        {/* Search icon button - positioned absolutely on the right side */}
-                        <button
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        // TODO: Add onClick handler for search submission
-                        // onClick={handleSearchSubmit}
-                        >
-                            <MdSearch className="w-5 h-5" />
-                        </button>
-                    </div>
+                    <SearchBar />
                 </div>
                 {/* ========================================
             SEARCH BAR SECTION - END
@@ -262,16 +233,7 @@ export function Header() {
 
             {/* Mobile Search Bar (Visible only on mobile) */}
             <div className="lg:hidden px-4 pb-4">
-                <div className="relative">
-                    <input
-                        type="text"
-                        placeholder={`Search for ${searchTerms[currentTermIndex]}...`}
-                        className="w-full pl-4 pr-10 py-2 border-2 border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent transition-all"
-                    />
-                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                        <MdSearch className="w-5 h-5" />
-                    </button>
-                </div>
+                <SearchBar />
             </div>
 
             {/* Mobile Navigation Menu */}
