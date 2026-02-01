@@ -92,6 +92,7 @@ function QuoteForm() {
           <div>
             <label className="font-medium block mb-1">Contact Number *</label>
             <input
+              type="number"
               placeholder="+91 98765 43210"
               className="w-full bg-gray-100 rounded-md px-3 py-2 outline-none"
               value={formData.contact}
