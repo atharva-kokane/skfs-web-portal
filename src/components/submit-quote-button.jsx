@@ -16,6 +16,12 @@ export default function SubmitButton({ formData, onSuccess }) {
           alert("Please fill required fields (*)");
           return;
         }
+        const cleanContact = formData.contact.replace(/\D/g, "");
+
+        if (cleanContact.length < 10 || cleanContact.length >= 11) {
+          alert("Please enter a valid 10-digit phone number.");
+          return;
+        }
 
         await saveQuote(
           formData.name,
