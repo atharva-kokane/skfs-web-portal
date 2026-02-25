@@ -53,7 +53,7 @@ export const searchIndex = [
   },
   {
     id: "sofa-bed",
-    name: "Sofa Beds",
+    name: "Sofa cum Beds",
     description: "Convertible sofa that folds into a bed",
     category: "Bed Room",
     slug: "/gallery?category=BED+ROOM",
