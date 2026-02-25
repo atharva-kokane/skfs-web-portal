@@ -27,7 +27,7 @@ export default function SearchBar() {
         
         console.log("Search results:", data); // Debug log
         
-        setResults(data || []);
+        setResults(Array.isArray(data) ? data : []);
         setShowDropdown(true);
       } catch (error) {
         console.error("Search error:", error);
